@@ -208,20 +208,30 @@ export default function Dashboard() {
           <span className="bg-gradient-to-br from-purple-900 via-purple-700 to-purple-500 bg-clip-text text-transparent">Account</span>
         </h2>
         {localStorage.getItem('auth_token') ? (
-          <div className="flex items-center justify-between">
-            <div className="text-purple-900"><strong>User:</strong> {studentName}</div>
-            <div className="flex items-center gap-2">
-              <Link to="/profile" className="rounded-lg border border-purple-300/60 px-3 py-1.5 text-sm font-semibold text-purple-800 bg-white/70 hover:bg-purple-50">Edit Profile</Link>
-              <button
-                onClick={() => { localStorage.removeItem('auth_token'); localStorage.removeItem('student_logged_in'); window.location.href = '/login'; }}
-                className="rounded-lg border border-red-300/60 px-3 py-1.5 text-sm font-semibold text-red-700 bg-white/70 hover:bg-red-50"
-              >Logout</button>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <div className="text-purple-900"><strong>User:</strong> {studentName}</div>
+              <div className="flex items-center gap-2">
+                <Link to="/profile" className="rounded-lg border border-purple-300/60 px-3 py-1.5 text-sm font-semibold text-purple-800 bg-white/70 hover:bg-purple-50">Edit Profile</Link>
+                <button
+                  onClick={() => { localStorage.removeItem('auth_token'); localStorage.removeItem('student_logged_in'); window.location.href = '/login'; }}
+                  className="rounded-lg border border-red-300/60 px-3 py-1.5 text-sm font-semibold text-red-700 bg-white/70 hover:bg-red-50"
+                >Logout</button>
+              </div>
             </div>
+            <Link 
+              to="/dashboard-v2" 
+              className="w-full text-center rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2.5 text-sm font-bold shadow-lg hover:scale-105 transition"
+            >
+              🚀 Go to Full Dashboard
+            </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-between">
-            <div className="text-purple-900">Please log in to personalize your experience.</div>
-            <Link to="/login" className="rounded-lg bg-gradient-to-r from-purple-600 to-purple-500 text-white px-3 py-1.5 text-sm font-semibold shadow">Login</Link>
+          <div className="flex flex-col gap-3">
+            <div className="text-purple-900">Please log in to access your personalized dashboard.</div>
+            <Link to="/login" className="w-full text-center rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2.5 text-sm font-bold shadow-lg hover:scale-105 transition">
+              Student Login
+            </Link>
           </div>
         )}
       </DashboardCard>
