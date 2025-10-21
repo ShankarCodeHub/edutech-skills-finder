@@ -43,6 +43,9 @@ coverage/
 backend/uploads/*
 !backend/uploads/.gitkeep
 
+# Large assets (can be hosted externally)
+frontend/src/assets/banner.jpg
+
 # MongoDB data (if running locally)
 data/db/
 
