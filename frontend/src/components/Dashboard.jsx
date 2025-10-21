@@ -220,7 +220,7 @@ export default function Dashboard() {
               </div>
             </div>
             <Link 
-              to="/dashboard-v2" 
+              to="/dashboard" 
               className="w-full text-center rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2.5 text-sm font-bold shadow-lg hover:scale-105 transition"
             >
               🚀 Go to Full Dashboard

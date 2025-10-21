@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // Placeholder imports for future features
 import CareerPathGenerator from "./CareerPathGenerator";
 import SkillScoreMeter from "./SkillScoreMeter";
@@ -16,12 +17,18 @@ export default function DashboardV2() {
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Fetch user profile on mount
   React.useEffect(() => {
     const token = localStorage.getItem('auth_token');
     if (!token) {
-      console.log('No auth token found');
+      console.log('No auth token found, redirecting to login');
+      // Redirect to login after a short delay
+      setTimeout(() => {
+        navigate('/login', { state: { message: 'Please login to access your dashboard' } });
+      }, 1500);
       return;
     }
     console.log('Fetching user profile with token:', token.substring(0, 20) + '...');
@@ -30,25 +37,44 @@ export default function DashboardV2() {
     })
       .then(res => {
         console.log('Profile response status:', res.status);
+        if (res.status === 401) {
+          // Token expired or invalid
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('student_logged_in');
+          navigate('/login', { state: { message: 'Session expired. Please login again.' } });
+          return null;
+        }
         return res.json();
       })
       .then(data => {
-        console.log('Profile data received:', data);
-        console.log('User skills:', data.skills);
-        setUser(data);
+        if (data) {
+          console.log('Profile data received:', data);
+          console.log('User skills:', data.skills);
+          setUser(data);
+        }
+        setLoading(false);
       })
       .catch(err => {
         console.error('Failed to fetch profile:', err);
         setUser(null);
+        setLoading(false);
       });
-  }, []);
+  }, [navigate]);
 
   // Show loading or error if needed
-  if (!user) {
+  if (loading || !user) {
     return (
       <div className={darkMode ? "bg-gray-900 text-white min-h-screen" : "bg-blue-50 text-blue-900 min-h-screen"}>
         <div className="container mx-auto py-8 px-4 text-center">
-          <div className="text-2xl font-bold">Loading your dashboard...</div>
+          <div className="text-2xl font-bold mb-4">
+            {loading ? "Loading your dashboard..." : "Redirecting to login..."}
+          </div>
+          {!localStorage.getItem('auth_token') && (
+            <div className="text-lg text-blue-700 mb-4">
+              Please login to access your personalized dashboard
+            </div>
+          )}
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
         </div>
       </div>
     );

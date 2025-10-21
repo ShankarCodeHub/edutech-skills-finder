@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,6 +8,10 @@ export default function Login() {
   const [isCreating, setIsCreating] = useState(false);
   const [confirm, setConfirm] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Show message from redirect if available
+  const redirectMessage = location.state?.message;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -162,6 +166,11 @@ export default function Login() {
             <p className="text-purple-600 text-sm">
               {isCreating ? "Join thousands of learners today" : "Access your personalized dashboard"}
             </p>
+            {redirectMessage && (
+              <div className="mt-3 p-2 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 text-sm">
+                {redirectMessage}
+              </div>
+            )}
           </div>
 
           <div className="mb-5">
