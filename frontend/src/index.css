@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Purple Theme Colors */
+:root {
+  --purple-50: #f5f3ff;
+  --purple-100: #ede9fe;
+  --purple-200: #ddd6fe;
+  --purple-300: #c4b5fd;
+  --purple-400: #a78bfa;
+  --purple-500: #8b5cf6;
+  --purple-600: #8458B3;
+  --purple-700: #7c3aed;
+  --purple-800: #6b21a8;
+  --purple-900: #581c87;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth; /* smooth scrolling for anchor links */
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "342af0fa-6121-4231-977a-6ff86f1213de",
+    "username": "tuh",
+    "password": "$2b$10$Gm9AmDpNVFQfKhEeP6ASDu5VQtVPFd7rbbaC1lYa9XxgiL3GGp9ZK",
+    "createdAt": 1760847712919
+  },
+  {
+    "id": "51edaa04-b27c-43a8-ac3d-988ae23f1be4",
+    "username": "shiv",
+    "password": "$2b$10$GsL5URV5cq4kWLRktk6GM.9z7uCyHYakvT8qxY/4QObjTlsaUvjsa",
+    "createdAt": 1760848423027
+  }
+]
