@@ -33,12 +33,13 @@ function App() {
     <Router>
       <div className="flex flex-col min-h-screen">
         <Routes>
-          <Route path="/" element={<LandingChooser />} />
+          <Route path="/choose" element={<LandingChooser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-register" element={<AdminRegister />} />
           {/* Layout route for main pages */}
           <Route element={<MainLayout />}> 
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/roadmap" element={<Roadmap />} />

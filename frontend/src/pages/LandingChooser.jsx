@@ -10,7 +10,7 @@ export default function LandingChooser() {
     if (token && info?.role === 'admin') {
       navigate('/admin', { replace: true });
     } else if (token && info?.username) {
-      navigate('/dashboard', { replace: true });
+      navigate('/home', { replace: true });
     }
   }, [navigate]);
 
@@ -30,7 +30,7 @@ export default function LandingChooser() {
               const token = localStorage.getItem('auth_token');
               const info = JSON.parse(localStorage.getItem('student_logged_in') || 'null');
               if (token && info?.role !== 'admin') {
-                navigate('/dashboard');
+                navigate('/home');
               } else {
                 navigate('/login');
               }
